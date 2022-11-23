@@ -9,11 +9,16 @@ class Player1(pygame.sprite.Sprite):
         self.maxhealth = 100
         self.all_projectiles = pygame.sprite.Group()
         self.attack = 50
-        self.velocity = 20
+        self.velocity = 15
+
+        self.isJump = False
+        self.jumpEnd = time.time()
+
 
         self.image = pygame.image.load('assets/warrior/warrior.png')
         self.rect = self.image.get_rect()
         self.rect.y = 595
+
 
 
 
@@ -28,6 +33,12 @@ class Player1(pygame.sprite.Sprite):
 
     def move_left(self):
         self.rect.x -= self.velocity
+
+    def move_up(self):
+        self.isJump = True
+        self.jumpEnd = time.time() + 1
+
+
 
     def launch_projectile(self, dir):
         self.all_projectiles.add(self.attack1(self, dir))
