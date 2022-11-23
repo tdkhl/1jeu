@@ -3,18 +3,18 @@ from projectiles import ProjectileWarrior
 import time
 
 class Player1(pygame.sprite.Sprite):
-    def __init__(self, classe):
+    def __init__(self, classe, game):
         super().__init__()
         self.health = 100
         self.maxhealth = 100
         self.all_projectiles = pygame.sprite.Group()
         self.attack = 50
-        self.velocity = 15
+        self.velocity = 5
 
         self.isJump = False
         self.jumpEnd = time.time()
 
-
+        self.game = game
         self.image = pygame.image.load('assets/warrior/warrior.png')
         self.rect = self.image.get_rect()
         self.rect.y = 595
@@ -38,19 +38,36 @@ class Player1(pygame.sprite.Sprite):
         self.isJump = True
         self.jumpEnd = time.time() + 1
 
+    def damage(self, amount):
+        if self.health - amount > amount:
+            self.health -= amount
+
+    def update_health_bar(self, surface):
+        pygame.draw.rect(surface,(60,63,60), [self.rect.x + 20, self.rect.y - 20, self.maxhealth, 5])
+        pygame.draw.rect(surface,(111,210,46), [self.rect.x + 20, self.rect.y - 20, self.maxhealth, 5])
+
+
 
 
     def launch_projectile(self, dir):
         self.all_projectiles.add(self.attack1(self, dir))
 
 class Player2(pygame.sprite.Sprite):
-    def __init__(self, classe):
+    def __init__(self, classe, game):
         super().__init__()
         self.health = 100
         self.maxhealth = 100
         self.all_projectiles = pygame.sprite.Group()
         self.attack = 50
-        self.velocity = 20
+        self.velocity = 5
+
+        self.isJump = False
+        self.jumpEnd = time.time()
+
+        self.game = game
+        self.image = pygame.image.load('assets/warrior/warrior.png')
+        self.rect = self.image.get_rect()
+        self.rect.y = 595
 
         self.attack1 = None
         if classe == "guerrier":
@@ -64,5 +81,12 @@ class Player2(pygame.sprite.Sprite):
     def move_left(self):
         self.rect.x -= self.velocity
 
+    def move_up(self):
+        self.isJump = True
+        self.jumpEnd = time.time() + 1
+
     def launch_projectile(self, dir):
         self.all_projectiles.add(self.attack1(self, dir))
+
+    def damage(self, amount):
+        self.health -= amount

@@ -35,6 +35,10 @@ while(isRunning):
     #afficher joueurs
     screen.blit(game.player1.image, game.player1.rect)
 
+    # actualiser barre hp
+
+    game.player1.update_health_bar(screen)
+
     # appliquer les images des projectiles et les faire bouger
 
     for bullet in game.player1.all_projectiles:

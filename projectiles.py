@@ -28,6 +28,15 @@ class ProjectileWarrior(pygame.sprite.Sprite):
     def remove(self):
         self.player.all_projectiles.remove(self)
     def move(self):
+
+        # vérifier si projectile entre en collide
+
+        for cible in self.player.game.check_collision(self, self.player.game.all_players):
+            if cible != self.player:
+                self.remove()
+                cible.damage(self.player.attack)
+
+
         if self.dir == "gauche":
             self.rect.x -= self.velocity
         else:
