@@ -38,6 +38,7 @@ while(isRunning):
     # actualiser barre hp
 
     game.player1.update_health_bar(screen)
+    game.player1.update_animation()
 
     # appliquer les images des projectiles et les faire bouger
 

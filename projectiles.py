@@ -20,6 +20,8 @@ class ProjectileWarrior(pygame.sprite.Sprite):
         if dir == "gauche":
             self.image = pygame.transform.rotate(self.image, 180)
 
+
+
     def rotate(self):
         self.angle += 12
         self.image = pygame.transform.rotozoom(self.origin_image, self.ange, 1)
