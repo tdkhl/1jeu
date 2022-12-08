@@ -23,13 +23,14 @@ class ProjectileWarrior(pygame.sprite.Sprite):
 
 
     def rotate(self):
-        self.angle += 12
-        self.image = pygame.transform.rotozoom(self.origin_image, self.ange, 1)
+        self.angle += -3
+        self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def remove(self):
         self.player.all_projectiles.remove(self)
     def move(self):
+        self.rotate()
 
         # vérifier si projectile entre en collide
 
