@@ -98,6 +98,9 @@ while(isRunning):
             elif(event.key == pygame.K_x and game.player1.attack1_last_use < time.time() - game.player1.attack1_cd):
                 game.player1.launch_projectile("gauche")
                 game.player1.attack1_last_use = time.time()
+            elif(event.key == pygame.K_f and game.player1.attack3_last_use < time.time() - game.player1.attack3_cd):
+                game.player1.launch_attack3()
+                game.player1.attack3_last_use = time.time()
             elif (event.key == pygame.K_w) and game.player1.rect.y == 595:
                 game.player1.move_up()
 
