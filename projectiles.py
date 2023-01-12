@@ -1,4 +1,5 @@
 import pygame
+
 import time
 # Classe Projectile Guerrier
 
@@ -15,6 +16,7 @@ class ProjectileWarrior(pygame.sprite.Sprite):
         self.angle = 0
         self.player = player
         self.dir = dir
+
 
         if dir == "gauche":
             self.image = pygame.transform.rotate(self.image, 180)
@@ -47,7 +49,6 @@ class ProjectileWarrior(pygame.sprite.Sprite):
             self.rect.x += self.velocity
         if self.rect.x > 1280 or self.rect.x < 0:
             self.remove()
-
 class InvincibiliteWarrior():
     def __init__(self, player):
 
