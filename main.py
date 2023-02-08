@@ -51,7 +51,7 @@ while isRunning:
         bullet.move()
 
     game.player1.all_projectiles.draw(screen)
-    game.player2.all_projectiles.draw(screen)
+    #game.player2.all_projectiles.draw(screen)
 
     # verifier si notre jeu a commencé ou non
     if game.is_playing:
@@ -59,7 +59,7 @@ while isRunning:
         game.update(screen)
 
         # actualiser la barre de vie du joueur
-        game.player2.update_health_bar(screen)
+        game.player1.update_health_bar(screen)
 
         # verifier si notre jeu n'a pas commencé
     else:
@@ -121,8 +121,6 @@ while isRunning:
                 game.player1.launch_attack3()
                 game.player1.attack3_last_use = time.time()
 
-            if (event.key == pygame.K_0):
-                game.player2.launch_projectile("gauche")
 
         elif (event.type == pygame.KEYUP):
             game.pressed[event.key] = False
