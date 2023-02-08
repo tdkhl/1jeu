@@ -23,6 +23,11 @@ play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 2.80)
 play_button_rect.y = math.ceil(screen.get_height() / 1.78)
 
+play_button1 = pygame.image.load('assets/buttonclasse.png')
+play_button1 = pygame.transform.scale(play_button1, (275, 100))
+play_button1_rect = play_button1.get_rect()
+play_button1_rect.x = math.ceil(screen.get_width() / 2.80)
+play_button1_rect.y = math.ceil(screen.get_height() / 1.38)
 # lancement du jeu
 game = Game()
 
@@ -60,6 +65,7 @@ while isRunning:
     else:
         # ajouter mon ecran de bienvenue
         screen.blit(play_button, play_button_rect)
+        screen.blit(play_button1, play_button1_rect)
 
     #actualisation du display
     pygame.display.flip()
