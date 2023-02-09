@@ -50,8 +50,11 @@ while isRunning:
     for bullet in game.player1.all_projectiles:
         bullet.move()
 
+    for bullet in game.player2.all_projectiles:
+        bullet.move()
+
     game.player1.all_projectiles.draw(screen)
-    #game.player2.all_projectiles.draw(screen)
+    game.player2.all_projectiles.draw(screen)
 
     # verifier si notre jeu a commencé ou non
     if game.is_playing:
@@ -60,6 +63,7 @@ while isRunning:
 
         # actualiser la barre de vie du joueur
         game.player1.update_health_bar(screen)
+        game.player2.update_health_bar(screen)
 
         # verifier si notre jeu n'a pas commencé
     else:
@@ -81,11 +85,31 @@ while isRunning:
         game.player1.rect.y -= 0.5
 
 
+    if game.player2.rect.y != 595 and game.player2.jumpEnd < time.time():
+
+        game.player2.isJump = False
+    if game.player2.rect.y != 595 and game.player2.isJump == False:
+
+        game.player2.rect.y += 1
+
+    if game.player2.isJump == True and game.player2.jumpEnd > time.time():
+        game.player2.rect.y -= 0.5
+
+
 
 
 
 
     # vérifier les déplacements des joueurs
+
+
+    if game.player1.rect.y > 565:
+        game.player1.rect.y = 565
+
+    if game.player2.rect.y > 565:
+        game.player2.rect.y = 565
+
+
 
     if (game.pressed.get(pygame.K_d) and game.player1.rect.x < 1200):
         game.player1.move_right()
@@ -115,11 +139,19 @@ while isRunning:
             elif(event.key == pygame.K_x and game.player1.attack1_last_use < time.time() - game.player1.attack1_cd):
                 game.player1.launch_projectile("gauche")
                 game.player1.attack1_last_use = time.time()
-            elif (event.key == pygame.K_w) and game.player1.rect.y == 595:
+            elif (event.key == pygame.K_w) and game.player1.rect.y == 565:
                 game.player1.move_up()
             elif (event.key == pygame.K_f and game.player1.attack3_last_use < time.time() - game.player1.attack3_cd):
                 game.player1.launch_attack3()
                 game.player1.attack3_last_use = time.time()
+            elif(event.key == pygame.K_UP) and game.player2.rect.y == 565:
+                game.player2.move_up()
+            elif(event.key == pygame.K_KP0 and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
+                game.player2.launch_projectile("gauche")
+                game.player2.attack1_last_use = time.time()
+            elif(event.key == pygame.K_KP_ENTER and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
+                game.player2.launch_projectile("droite")
+                game.player2.attack1_last_use = time.time()
 
 
         elif (event.type == pygame.KEYUP):
