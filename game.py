@@ -18,6 +18,7 @@ class Game:
     def update(self, screen):
         # appliquer l'image de mon joueur
         screen.blit(self.player1.image, self.player1.rect)
+        screen.blit(self.player2.image, self.player2.rect)
 
         # actualiser l'animation du joueur
         self.player1.update_animation()

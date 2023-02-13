@@ -16,7 +16,7 @@ class Player1(animation.AnimateSprite):
         self.maxhealth = 100
         self.all_projectiles = pygame.sprite.Group()
         self.attack = 50
-        self.velocity = 5
+        self.velocity = 2
         self.isJump = False
         self.jumpEnd = time.time()
         self.game = game
@@ -33,9 +33,12 @@ class Player1(animation.AnimateSprite):
 
     def move_right(self):
         self.rect.x += self.velocity
+        self.start_animation_walk()
+
 
     def move_left(self):
         self.rect.x -= self.velocity
+        self.start_animation_walk()
 
     def move_up(self):
         self.isJump = True
@@ -82,7 +85,7 @@ class Player2(animation.AnimateSprite):
         self.jumpEnd = time.time()
 
         self.game = game
-        self.image = pygame.image.load('assets/warrior/warrior.png')
+        self.image = pygame.image.load('assets/assassin/assassin.png')
         self.rect = self.image.get_rect()
         self.rect.y = 595
 
