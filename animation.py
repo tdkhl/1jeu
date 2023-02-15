@@ -30,7 +30,7 @@ class AnimateSprite(pygame.sprite.Sprite):
     def animate(self, loop=False):
         if(self.animation):
 
-            self.current_image += 0.08
+            self.current_image += 0.15
 
             if self.current_image >= len(self.images):
                 self.current_image = 0
