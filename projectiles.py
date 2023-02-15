@@ -6,7 +6,7 @@ import time
 class ProjectileWarrior(pygame.sprite.Sprite):
     def __init__(self, player, dir):
         super().__init__()
-        self.velocity = 2
+        self.velocity = 5
         self.image = pygame.image.load('assets/warrior/arrow.png')
         self.image = pygame.transform.scale(self.image, (50,50))
         self.rect = self.image.get_rect()
