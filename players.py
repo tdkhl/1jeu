@@ -23,6 +23,9 @@ class Player1(animation.AnimateSprite):
         self.rect = self.image.get_rect()
         self.rect.y = 400
 
+        if dir == "gauche":
+            self.image = pygame.transform.rotate(self.image, 180)
+
 
 
         self.attack1_cd = 1.5
@@ -43,6 +46,7 @@ class Player1(animation.AnimateSprite):
     def move_up(self):
         self.isJump = True
         self.jumpEnd = time.time() + 1
+        self.start_animation_jump()
 
     def damage(self, amount):
         if (self.InvincibiliteWarrior):
@@ -74,7 +78,9 @@ class Player1(animation.AnimateSprite):
 
 class Player2(animation.AnimateSprite):
     def __init__(self, classe, game):
-        super().__init__("warrior")
+        self.attack1 = None
+        if classe == "guerrier":
+            super().__init__("warrior")
         self.health = 100
         self.maxhealth = 100
         self.all_projectiles = pygame.sprite.Group()

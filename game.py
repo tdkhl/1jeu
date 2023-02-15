@@ -22,3 +22,4 @@ class Game:
 
         # actualiser l'animation du joueur
         self.player1.update_animation()
+        self.player2.update_animation()
