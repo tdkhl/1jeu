@@ -22,6 +22,7 @@ class Player1(animation.AnimateSprite):
         self.game = game
         self.rect = self.image.get_rect()
         self.rect.y = 400
+        self.dir = dir
 
         if dir == "gauche":
             self.image = pygame.transform.rotate(self.image, 180)
@@ -41,7 +42,7 @@ class Player1(animation.AnimateSprite):
 
     def move_left(self):
         self.rect.x -= self.velocity
-        self.start_animation_walk()
+        self.start_animation_walk_gauche()
 
     def move_up(self):
         self.isJump = True

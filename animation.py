@@ -15,6 +15,7 @@ class AnimateSprite(pygame.sprite.Sprite):
         self.images_jump = animations.get(f'{sprite_name}_jump')
         self.animation = False
         self.animation_walk = False
+        self.animation_walk_gauche = False
         self.animation_jump = False
 
     def start_animation(self):
@@ -22,6 +23,9 @@ class AnimateSprite(pygame.sprite.Sprite):
 
     def start_animation_walk(self):
         self.animation_walk = True
+
+    def start_animation_walk_gauche(self):
+        self.animation_walk_gauche = True
 
     def start_animation_jump(self):
         self.animation_jump = True
@@ -49,6 +53,16 @@ class AnimateSprite(pygame.sprite.Sprite):
                     self.animation_walk = False
 
             self.image = self.images_walk[math.floor(self.current_image_walk)]
+
+        if self.animation_walk_gauche:
+            self.current_image_walk += 0.1
+
+            if self.current_image_walk >= len(self.images_walk):
+                self.current_image_walk = 0
+                if loop is False:
+                    self.animation_walk_gauche = False
+
+            self.image = pygame.transform.flip(self.images_walk[math.floor(self.current_image_walk)],100, 0)
 
         if (self.animation_jump):
 
@@ -103,11 +117,11 @@ def load_animation_images_jump(sprite_name):
 
     # dictionnaire qui contient les images chargées
 
-
 animations = {
             'warrior': load_animation_images('warrior'),
             'warrior_walk': load_animation_images_walk('warrior'),
             'warrior_jump': load_animation_images_jump('warrior')
     }
+
 
 
