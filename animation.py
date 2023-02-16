@@ -17,6 +17,7 @@ class AnimateSprite(pygame.sprite.Sprite):
         self.animation_walk = False
         self.animation_walk_gauche = False
         self.animation_jump = False
+        self.animation_jump_gauche = False
 
     def start_animation(self):
         self.animation = True
@@ -29,6 +30,9 @@ class AnimateSprite(pygame.sprite.Sprite):
 
     def start_animation_jump(self):
         self.animation_jump = True
+
+    def start_animation_jump_gauche(self):
+        self.animation_jump_gauche = True
 
 
     def animate(self, loop=False):
@@ -63,6 +67,17 @@ class AnimateSprite(pygame.sprite.Sprite):
                     self.animation_walk_gauche = False
 
             self.image = pygame.transform.flip(self.images_walk[math.floor(self.current_image_walk)],100, 0)
+
+        if self.animation_jump_gauche:
+            self.current_image_jump += 0.025
+
+            if self.current_image_jump >= len(self.images_jump):
+                self.current_image_jump = 0
+                if loop is False:
+                    self.animation_jump_gauche = False
+
+            self.image = pygame.transform.flip(self.images_jump[math.floor(self.current_image_jump)], 100, 0)
+
 
         if (self.animation_jump):
 

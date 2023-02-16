@@ -22,10 +22,6 @@ class Player1(animation.AnimateSprite):
         self.game = game
         self.rect = self.image.get_rect()
         self.rect.y = 400
-        self.dir = dir
-
-        if dir == "gauche":
-            self.image = pygame.transform.rotate(self.image, 180)
 
 
 
@@ -37,17 +33,25 @@ class Player1(animation.AnimateSprite):
 
     def move_right(self):
         self.rect.x += self.velocity
-        self.start_animation_walk()
+        if self.isJump:
+            self.start_animation_jump()
+        else:
+            self.start_animation_walk()
 
 
     def move_left(self):
         self.rect.x -= self.velocity
-        self.start_animation_walk_gauche()
+        if self.isJump:
+
+            self.start_animation_jump_gauche()
+        else:
+            self.start_animation_walk_gauche()
+
 
     def move_up(self):
         self.isJump = True
         self.jumpEnd = time.time() + 1
-        self.start_animation_jump()
+        #self.start_animation_jump()
 
     def damage(self, amount):
         if (self.InvincibiliteWarrior):
