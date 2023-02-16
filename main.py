@@ -1,4 +1,7 @@
+import sys
 import pygame
+from pygame import KEYDOWN, K_ESCAPE
+
 from game import Game
 import time
 import math
@@ -21,13 +24,20 @@ play_button = pygame.image.load('assets/buttonplay.png')
 play_button = pygame.transform.scale(play_button, (275, 100))
 play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 2.80)
-play_button_rect.y = math.ceil(screen.get_height() / 1.78)
+play_button_rect.y = math.ceil(screen.get_height() / 2.50)
 
 play_button1 = pygame.image.load('assets/buttonclasse.png')
 play_button1 = pygame.transform.scale(play_button1, (275, 100))
 play_button1_rect = play_button1.get_rect()
 play_button1_rect.x = math.ceil(screen.get_width() / 2.80)
-play_button1_rect.y = math.ceil(screen.get_height() / 1.38)
+play_button1_rect.y = math.ceil(screen.get_height() / 1.80)
+
+play_button2 = pygame.image.load('assets/buttonquit.png')
+play_button2 = pygame.transform.scale(play_button2, (75, 80))
+play_button2_rect = play_button2.get_rect()
+play_button2_rect.x = math.ceil(screen.get_width() / 2.35)
+play_button2_rect.y = math.ceil(screen.get_height() / 1.38)
+
 # lancement du jeu
 game = Game()
 
@@ -70,6 +80,8 @@ while isRunning:
         # ajouter mon ecran de bienvenue
         screen.blit(play_button, play_button_rect)
         screen.blit(play_button1, play_button1_rect)
+        screen.blit(play_button2, play_button2_rect)
+
 
     #actualisation du display
     pygame.display.flip()
@@ -162,3 +174,11 @@ while isRunning:
             if play_button_rect.collidepoint(event.pos):
                 # mettre le jeu en mode"lancé"
                 game.is_playing = True
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+
+            if play_button2_rect.collidepoint(event.pos):
+                isRunning = False
+                pygame.quit()
