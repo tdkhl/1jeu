@@ -135,7 +135,10 @@ def load_animation_images_jump(sprite_name):
 animations = {
             'warrior': load_animation_images('warrior'),
             'warrior_walk': load_animation_images_walk('warrior'),
-            'warrior_jump': load_animation_images_jump('warrior')
+            'warrior_jump': load_animation_images_jump('warrior'),
+            'assassin' : load_animation_images('assassin'),
+            'assassin_walk': load_animation_images_walk('assassin'),
+            'assassin_jump': load_animation_images_jump('assassin')
     }
 
 
