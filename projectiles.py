@@ -21,8 +21,6 @@ class ProjectileWarrior(pygame.sprite.Sprite):
         if dir == "gauche":
             self.image = pygame.transform.rotate(self.image, 180)
 
-        self.player.damage(10)
-
 
 
     def rotate(self):
@@ -60,7 +58,7 @@ class InvincibiliteWarrior():
 class ProjectileAssassin(pygame.sprite.Sprite):
     def __init__(self, player, dir):
         super().__init__()
-        self.velocity = 2
+        self.velocity = 5
         self.image = pygame.image.load('assets/assassin/dague.png')
         self.image = pygame.transform.scale(self.image, (50,50))
         self.rect = self.image.get_rect()
@@ -75,7 +73,6 @@ class ProjectileAssassin(pygame.sprite.Sprite):
         if dir == "gauche":
             self.image = pygame.transform.rotate(self.image, 180)
 
-        self.player.damage(10)
 
 
 

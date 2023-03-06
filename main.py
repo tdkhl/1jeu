@@ -24,13 +24,13 @@ play_button = pygame.image.load('assets/buttonplay.png')
 play_button = pygame.transform.scale(play_button, (275, 100))
 play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 2.80)
-play_button_rect.y = math.ceil(screen.get_height() / 2.50)
+play_button_rect.y = math.ceil(screen.get_height() / 1.80)
 
-play_button1 = pygame.image.load('assets/buttonclasse.png')
+"""play_button1 = pygame.image.load('assets/buttonclasse.png')
 play_button1 = pygame.transform.scale(play_button1, (275, 100))
 play_button1_rect = play_button1.get_rect()
 play_button1_rect.x = math.ceil(screen.get_width() / 2.80)
-play_button1_rect.y = math.ceil(screen.get_height() / 1.80)
+play_button1_rect.y = math.ceil(screen.get_height() / 1.80)"""
 
 play_button2 = pygame.image.load('assets/buttonquit.png')
 play_button2 = pygame.transform.scale(play_button2, (75, 80))
@@ -79,7 +79,7 @@ while isRunning:
     else:
         # ajouter mon ecran de bienvenue
         screen.blit(play_button, play_button_rect)
-        screen.blit(play_button1, play_button1_rect)
+        """screen.blit(play_button1, play_button1_rect)"""
         screen.blit(play_button2, play_button2_rect)
 
 
@@ -158,10 +158,10 @@ while isRunning:
                 game.player1.attack3_last_use = time.time()
             elif(event.key == pygame.K_UP) and game.player2.rect.y == 565:
                 game.player2.move_up()
-            elif(event.key == pygame.K_KP0 and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
+            elif(event.key == pygame.K_l and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
                 game.player2.launch_projectile("gauche")
                 game.player2.attack1_last_use = time.time()
-            elif(event.key == pygame.K_KP_ENTER and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
+            elif(event.key == pygame.K_m and game.player2.attack1_last_use < time.time() - game.player2.attack1_cd):
                 game.player2.launch_projectile("droite")
                 game.player2.attack1_last_use = time.time()
 

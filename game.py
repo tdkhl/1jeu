@@ -6,7 +6,7 @@ class Game:
     def __init__(self):
         self.is_playing = False
         self.player1 = Player1("guerrier", self)
-        self.player2 = Player2("guerrier", self)
+        self.player2 = Player2("assassin", self)
         self.pressed = {}
         self.all_players = pygame.sprite.Group()
         self.all_players.add(self.player1)
